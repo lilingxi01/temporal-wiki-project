@@ -3,6 +3,9 @@
 .nova/
 .idea/
 .vscode/
+.fleet/
+
+__pycache__/
 
 .env
 .env.*
