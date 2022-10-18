@@ -1,8 +1,10 @@
 import re
 import html
-from magicwords import MagicWords
 from urllib.parse import quote as urlencode
 from html.entities import name2codepoint
+
+from support.magicwords import MagicWords
+from support.tags import ignored_tags_regex, self_closing_tags_regex, placeholder_tags_regex
 
 
 # match tail after wikilink
@@ -88,12 +90,12 @@ def clean_syntax(text, expand_templates=False, should_keep_link=True, html_safe=
         spans.append((m.start(), m.end()))
 
     # Drop self-closing tags
-    for pattern in selfClosing_tag_patterns:
+    for pattern in self_closing_tags_regex:
         for m in pattern.finditer(text):
             spans.append((m.start(), m.end()))
 
     # Drop ignored tags
-    for left, right in ignored_tag_patterns:
+    for left, right in ignored_tags_regex:
         for m in left.finditer(text):
             spans.append((m.start(), m.end()))
         for m in right.finditer(text):
@@ -111,7 +113,7 @@ def clean_syntax(text, expand_templates=False, should_keep_link=True, html_safe=
     text = unescape(text)
 
     # Expand placeholders
-    for pattern, placeholder in placeholder_tag_patterns:
+    for pattern, placeholder in placeholder_tags_regex:
         index = 1
         for match in pattern.finditer(text):
             text = text.replace(match.group(), '%s_%d' % (placeholder, index))
@@ -135,20 +137,6 @@ def clean_syntax(text, expand_templates=False, should_keep_link=True, html_safe=
 
 
 # ----------------------------------------------------------------------
-
-# These tags are most possibly self-closing. We need to drop them in the process.
-possible_self_closing_tags = ('br', 'hr', 'nobr', 'ref', 'references', 'nowiki')
-
-# These tags are dropped, keeping their content.
-# handle 'a' separately, depending on keepLinks
-ignored_tags = (
-    'abbr', 'b', 'big', 'blockquote', 'center', 'cite', 'div', 'em',
-            'font', 'h1', 'h2', 'h3', 'h4', 'hiero', 'i', 'kbd', 'nowiki',
-            'p', 'plaintext', 's', 'span', 'strike', 'strong',
-            'sub', 'sup', 'tt', 'u', 'var'
-)
-
-placeholder_tags = {'math': 'formula', 'code': 'codice'}
 
 
 def unescape(text):
@@ -174,46 +162,12 @@ def unescape(text):
             return text  # leave as is
 
     return re.sub("&#?(\w+);", fixup, text)
+    # I do not really know the purpose of this function for now.
 
 
 # Match HTML comments
 # The buggy template {{Template:T}} has a comment terminating with just "->"
 comment = re.compile(r'<!--.*?-->', re.DOTALL)
-
-# Match ignored tags.
-# For now, this part is hardcoded alongside this file.
-# TODO: I am thinking if I should divide this part into a separate file.
-ignored_tag_patterns = []
-
-
-# TODO: Migration into dedicated files.
-def ignore_tag(tag):
-    left = re.compile(r'<%s\b.*?>' % tag, re.IGNORECASE | re.DOTALL)  # both <ref> and <reference>
-    right = re.compile(r'</\s*%s>' % tag, re.IGNORECASE)
-    ignored_tag_patterns.append((left, right))
-
-
-# TODO: Migration into dedicated files.
-for tag in ignored_tags:
-    ignore_tag(tag)
-
-# Match selfClosing HTML tags
-selfClosing_tag_patterns = [
-    re.compile(r'<\s*%s\b[^>]*/\s*>' % tag, re.DOTALL | re.IGNORECASE) for tag in possible_self_closing_tags
-]
-
-# Match HTML placeholder tags
-placeholder_tag_patterns = [
-    (re.compile(r'<\s*%s(\s*| [^>]+?)>.*?<\s*/\s*%s\s*>' % (tag, tag), re.DOTALL | re.IGNORECASE),
-            repl) for tag, repl in placeholder_tags.items()
-]
-
-# Match preformatted lines
-preformatted = re.compile(r'^ .*?$')
-
-# Match external links (space separates second optional parameter)
-externalLink = re.compile(r'\[\w+[^ ]*? (.*?)]')
-externalLinkNoAnchor = re.compile(r'\[\w+[&\]]*\]')
 
 # Matches bold/italic
 bold_italic = re.compile(r"'''''(.*?)'''''")
@@ -303,26 +257,23 @@ def drop_spans(spans, text):
 # ----------------------------------------------------------------------
 # External links
 
-# from: https://doc.wikimedia.org/mediawiki-core/master/php/DefaultSettings_8php_source.html
-
-wgUrlProtocols = [
+# This protocol is coming from https://www.mediawiki.org/wiki/Manual:$wgUrlProtocols
+wiki_url_protocols = [
     'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://',
     'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:',
     'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://',
     'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//'
 ]
 
-# from: https://doc.wikimedia.org/mediawiki-core/master/php/Parser_8php_source.html
-
 # Constants needed for external link processing
 # Everything except bracket, space, or control characters
 # \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
 # as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
-EXT_LINK_URL_CLASS = r'[^][<>"\x00-\x20\x7F\s]'
-ExtLinkBracketedRegex = re.compile(
-    '\[(((?i)' + '|'.join(wgUrlProtocols) + ')' + EXT_LINK_URL_CLASS + r'+)\s*([^\]\x00-\x08\x0a-\x1F]*?)\]',
+external_link_url_class = r'[^][<>"\x00-\x20\x7F\s]'
+external_link_regex = re.compile(
+    '\[(((?i)' + '|'.join(wiki_url_protocols) + ')' + external_link_url_class + r'+)\s*([^\]\x00-\x08\x0a-\x1F]*?)\]',
     re.S | re.U)
-EXT_IMAGE_REGEX = re.compile(
+external_image_regex = re.compile(
     r"""^(http://|https://)([^][<>"\x00-\x20\x7F\s]+)
     /([A-Za-z0-9_.,~%\-+&;#*?!=()@\x80-\xFF]+)\.((?i)gif|png|jpg|jpeg)$""",
     re.X | re.S | re.U)
@@ -331,7 +282,7 @@ EXT_IMAGE_REGEX = re.compile(
 def replace_external_links(text, should_keep_link=True):
     s = ''
     cur = 0
-    for m in ExtLinkBracketedRegex.finditer(text):
+    for m in external_link_regex.finditer(text):
         s += text[cur:m.start()]
         cur = m.end()
 
@@ -348,7 +299,7 @@ def replace_external_links(text, should_keep_link=True):
 
         # If the link text is an image URL, replace it with an <img> tag
         # This happened by accident in the original parser, but some people used it extensively
-        m = EXT_IMAGE_REGEX.match(label)
+        m = external_image_regex.match(label)
         if m:
             label = make_external_image(label, should_keep_src=should_keep_link)
 
@@ -399,7 +350,6 @@ def replace_internal_links(text, should_keep_link=True):
     for s, e in find_balanced_pairs(text, ['[['], [']]']):
         m = tailRE.match(text, e)
         if m:
-            print('>>>>> m:', m)
             trail = m.group(0)
             end = m.end()
         else:
@@ -488,18 +438,3 @@ def find_balanced_pairs(text, open_delim, close_delim):
                 start = next.end()
                 startSet = False
         cur = next.end()
-
-
-def ucfirst(string):
-    """:return: a string with just its first character uppercase."""
-    # No need to handle the edge cases here. Python handles them all.
-    return string[0].upper() + string[1:] if string else ''
-
-
-def lcfirst(string):
-    """:return: a string with its first character lowercase."""
-    return string[0].lower() + string[1:] if string else ''
-
-
-def normalize_namespace(ns):
-    return ucfirst(ns)

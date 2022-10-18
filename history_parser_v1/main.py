@@ -1,6 +1,7 @@
 from syntax_cleanning import clean_syntax
 import xmltodict
 from history import HistoryBase
+from diff_module import HistoryDiff
 
 # Load minimal sample file and content.
 xml_file = open('../sample_data/minimal_sample.xml', 'r')
@@ -18,6 +19,10 @@ if type(tree['mediawiki']['page']) is list:
 else:
     parsed.append(HistoryBase(tree['mediawiki']['page']))
 
-print(parsed[0][0].raw_text)
-print('====================')
-print(clean_syntax(parsed[0][0].raw_text))
+# Generate history map based on
+history = HistoryDiff(
+    old_text=parsed[0][0].raw_text,
+    new_text=parsed[0][1].raw_text
+)
+
+print(history)

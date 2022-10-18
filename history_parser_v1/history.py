@@ -1,10 +1,11 @@
 import json
 from datetime import datetime
+from syntax_cleanning import clean_syntax
 
 
 def text_parser(raw_text):
     """Parse the wiki raw text into designated form."""
-    return raw_text
+    return clean_syntax(raw_text)
 
 
 def get_timestamp(iso):

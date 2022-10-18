@@ -119,3 +119,4 @@ class MagicWords:
     )
 
     regex = re.compile('|'.join(switches))
+    
