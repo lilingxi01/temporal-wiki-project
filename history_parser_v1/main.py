@@ -3,7 +3,7 @@ import xmltodict
 from history import HistoryBase
 
 # Load minimal sample file and content.
-xml_file = open('../sample-data/minimal-sample.xml', 'r')
+xml_file = open('../sample_data/minimal_sample.xml', 'r')
 xml_content = xml_file.read()
 
 # Parse the XML content and generate the object tree.
