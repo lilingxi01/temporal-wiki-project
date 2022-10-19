@@ -1,9 +1,9 @@
 import xmltodict
-from history_model import HistoryBase
+from models import HistoryBase
 from diff_module import HistoryDiff
 
 # Load minimal sample file and content.
-xml_file = open('./sample_data/minimal_sample.xml', 'r')
+xml_file = open('../sample_data/minimal_sample.xml', 'r')
 xml_content = xml_file.read()
 
 # Parse the XML content and generate the object tree.
