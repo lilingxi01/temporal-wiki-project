@@ -3,8 +3,8 @@ import html
 from urllib.parse import quote as urlencode
 from html.entities import name2codepoint
 
-from support.magicwords import MagicWords
-from support.tags import ignored_tags_regex, self_closing_tags_regex, placeholder_tags_regex
+from .support.magicwords import MagicWords
+from .support.tags import ignored_tags_regex, self_closing_tags_regex, placeholder_tags_regex
 
 
 # match tail after wikilink

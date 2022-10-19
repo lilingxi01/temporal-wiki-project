@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from syntax_cleanning import clean_syntax
+from syntax_cleanner import clean_syntax
 
 
 def text_parser(raw_text):
