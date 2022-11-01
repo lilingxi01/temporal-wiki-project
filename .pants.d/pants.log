@@ -14,3 +14,374 @@
 01:52:37.78 [INFO] Done extending leases
 01:53:57.80 [INFO] Extending leases
 01:53:57.81 [INFO] Done extending leases
+01:55:05.15 [INFO] handling request: `--pants-bin-name=./pants --pants-version=2.14.0 tailor`
+01:55:05.19 [INFO] request completed: `--pants-bin-name=./pants --pants-version=2.14.0 tailor`
+01:55:17.85 [INFO] Extending leases
+01:55:17.85 [INFO] Done extending leases
+01:56:37.89 [INFO] Extending leases
+01:56:37.89 [INFO] Done extending leases
+01:57:57.94 [INFO] Extending leases
+01:57:57.95 [INFO] Done extending leases
+01:59:17.99 [INFO] Extending leases
+01:59:17.99 [INFO] Done extending leases
+02:00:25.55 [INFO] handling request: `--pants-bin-name=./pants --pants-version=2.14.0 tailor ::`
+02:00:25.59 [INFO] request completed: `--pants-bin-name=./pants --pants-version=2.14.0 tailor ::`
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"diff_module", "diff_module/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"diff_module/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm", "grimm/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/support/BUILD", "grimm/support"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/support/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/BUILD", "tests"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 1 and dirtied 31 nodes for: {"diff_module/BUILD", "diff_module"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"diff_module/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 1 and dirtied 38 nodes for: {"grimm", "grimm/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 1 and dirtied 31 nodes for: {"grimm/support", "grimm/support/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/support/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 1 and dirtied 31 nodes for: {"tests", "tests/BUILD"}
+02:00:25.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/BUILD"}
+02:00:38.03 [INFO] Extending leases
+02:00:38.03 [INFO] Done extending leases
+02:01:58.07 [INFO] Extending leases
+02:01:58.08 [INFO] Done extending leases
+02:03:18.11 [INFO] Extending leases
+02:03:18.11 [INFO] Done extending leases
+02:04:38.17 [INFO] Extending leases
+02:04:38.17 [INFO] Done extending leases
+02:05:58.21 [INFO] Extending leases
+02:05:58.21 [INFO] Done extending leases
+02:07:18.26 [INFO] Extending leases
+02:07:18.26 [INFO] Done extending leases
+02:08:38.30 [INFO] Extending leases
+02:08:38.30 [INFO] Done extending leases
+02:25:11.94 [INFO] Extending leases
+02:25:11.96 [INFO] Done extending leases
+02:26:32.00 [INFO] Extending leases
+02:26:32.00 [INFO] Done extending leases
+02:27:52.07 [INFO] Extending leases
+02:27:52.07 [INFO] Done extending leases
+02:29:12.13 [INFO] Extending leases
+02:29:12.14 [INFO] Done extending leases
+02:30:32.19 [INFO] Extending leases
+02:30:32.19 [INFO] Done extending leases
+02:31:52.22 [INFO] Extending leases
+02:31:52.22 [INFO] Done extending leases
+02:33:16.90 [INFO] Extending leases
+02:33:16.91 [INFO] Done extending leases
+02:34:51.04 [INFO] Extending leases
+02:34:51.04 [INFO] Done extending leases
+02:36:55.55 [INFO] Extending leases
+02:36:55.55 [INFO] Done extending leases
+02:38:34.92 [INFO] Extending leases
+02:38:34.92 [INFO] Done extending leases
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py", "tests"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:07.03 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm", "grimm/tests"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/link_parsing.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py", "tests"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/BUILD"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/BUILD"}
+02:39:07.04 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", ""}
+02:39:07.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/BUILD", "tests"}
+02:39:07.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/BUILD", "grimm/tests"}
+02:39:07.05 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"tests", ""}
+02:39:11.25 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:11.25 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:11.25 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:11.25 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:11.25 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:11.25 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:13.43 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:13.43 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:13.43 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:13.44 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:13.44 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:13.44 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:19.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:19.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:19.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:19.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:19.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:19.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:20.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:20.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:20.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:20.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:20.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:20.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:24.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:24.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:24.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:24.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:24.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:24.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:28.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:28.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:28.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:28.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:28.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:28.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:34.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:34.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:34.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:34.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:35.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:35.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:35.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:35.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:36.50 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:36.50 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:36.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:36.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:42.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:42.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:42.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:42.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:43.10 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:43.10 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:43.10 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:43.10 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:47.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "tests"}
+02:39:47.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py", "tests"}
+02:39:47.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py", "tests"}
+02:39:47.60 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py"}
+02:39:47.61 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"tests", ""}
+02:39:47.61 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py", "tests"}
+02:39:47.61 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py", "tests"}
+02:39:47.61 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py"}
+02:39:47.62 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:47.62 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:47.62 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:47.62 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:39:47.62 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:39:47.62 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py", "tests"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:39:47.63 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:39:47.65 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/BUILD", "grimm/tests"}
+02:39:47.65 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/BUILD"}
+02:39:47.65 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/BUILD"}
+02:39:47.65 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/BUILD"}
+02:39:47.66 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm", "grimm/tests"}
+02:39:47.66 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm", "grimm/tests"}
+02:39:54.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py", "tests"}
+02:39:54.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:39:54.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:39:54.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py"}
+02:39:54.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py", "tests"}
+02:39:54.51 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/entire_clean.py"}
+02:39:54.95 [INFO] Extending leases
+02:39:54.96 [INFO] Done extending leases
+02:40:25.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm"}
+02:40:25.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:40:25.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:40:25.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:40:25.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/link_parsing.py", "tests"}
+02:40:25.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm", "grimm/tests"}
+02:40:25.16 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:40:25.16 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:40:25.16 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:40:25.16 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/link_parsing.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/BUILD", "tests"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/BUILD", "grimm/tests"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", "tests/entire_clean.py"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests/BUILD", "tests"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/BUILD", "grimm/tests"}
+02:40:25.17 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"tests", ""}
+02:40:25.18 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"tests", ""}
+02:40:28.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:40:28.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:40:28.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:40:28.15 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/entire_clean.py"}
+02:40:28.15 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py", "grimm/tests"}
+02:40:28.15 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/entire_clean.py"}
+02:41:15.01 [INFO] Extending leases
+02:41:15.01 [INFO] Done extending leases
+02:42:17.58 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:17.59 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:19.30 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:19.30 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:19.30 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:19.30 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:19.30 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:19.30 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:22.81 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:22.81 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:22.81 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:22.82 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:22.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:22.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:24.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:24.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:24.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:24.14 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:24.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:24.14 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:25.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:25.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:25.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:25.20 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:25.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:25.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:26.39 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:26.39 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:26.39 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:26.39 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:26.39 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:26.39 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:27.67 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:27.67 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:27.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:27.67 [INFO] Filesystem changed during run: retrying `Snapshot` in 500ms...
+02:42:27.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:27.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:27.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:28.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:28.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:28.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:28.82 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:28.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:28.82 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:30.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:30.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:30.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:30.20 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:30.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:30.20 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:34.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:34.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:34.21 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:34.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:35.05 [INFO] Extending leases
+02:42:35.05 [INFO] Done extending leases
+02:42:37.53 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:37.53 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:37.53 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:37.53 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:49.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:49.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:49.09 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:49.09 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:51.89 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:51.89 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:51.89 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:51.89 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:54.38 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:54.38 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:54.39 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:54.39 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:58.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:42:58.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:58.35 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:42:58.35 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:58.86 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:42:58.86 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:42:58.86 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:42:58.86 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:43:10.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:43:10.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:43:10.67 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"setup.py", ""}
+02:43:10.67 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:43:55.09 [INFO] Extending leases
+02:43:55.09 [INFO] Done extending leases
+02:44:05.48 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py", ""}
+02:44:05.48 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:44:05.48 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:44:05.49 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:44:45.11 [INFO] Garbage collecting store. target_size=28,800,000,000
+02:44:45.11 [INFO] Done garbage collecting store
+02:45:01.26 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:45:01.26 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:45:01.26 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:45:01.26 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:45:01.99 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"", "setup.py"}
+02:45:01.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:45:01.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "setup.py"}
+02:45:01.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"setup.py"}
+02:45:15.13 [INFO] Extending leases
+02:45:15.13 [INFO] Done extending leases
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", ""}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "Temporal_Wiki_Project.egg-info"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/PKG-INFO"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/PKG-INFO"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/dependency_links.txt", "Temporal_Wiki_Project.egg-info"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/dependency_links.txt"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/top_level.txt"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/top_level.txt"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/SOURCES.txt"}
+02:45:58.21 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"Temporal_Wiki_Project.egg-info", ""}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", ""}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/PKG-INFO"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/PKG-INFO"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/dependency_links.txt", "Temporal_Wiki_Project.egg-info"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/dependency_links.txt"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/top_level.txt", "Temporal_Wiki_Project.egg-info"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/top_level.txt"}
+02:45:58.21 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/SOURCES.txt"}
+02:45:58.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/SOURCES.txt", "Temporal_Wiki_Project.egg-info"}
+02:45:58.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/SOURCES.txt"}
+02:45:58.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/SOURCES.txt"}
+02:45:58.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/SOURCES.txt"}
+02:45:58.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/SOURCES.txt", "Temporal_Wiki_Project.egg-info"}
+02:45:58.22 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/SOURCES.txt"}
+02:46:35.18 [INFO] Extending leases
+02:46:35.18 [INFO] Done extending leases
+02:46:57.81 [INFO] handling request: `--pants-bin-name=./pants --pants-version=2.14.0 test root`
+02:46:57.87 [INFO] request completed: `--pants-bin-name=./pants --pants-version=2.14.0 test root`
+02:47:06.76 [INFO] handling request: `--pants-bin-name=./pants --pants-version=2.14.0 test /::`
+02:47:06.80 [INFO] request completed: `--pants-bin-name=./pants --pants-version=2.14.0 test /::`
+02:47:27.97 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info", "Temporal_Wiki_Project.egg-info/PKG-INFO"}
+02:47:27.97 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/SOURCES.txt", "Temporal_Wiki_Project.egg-info"}
+02:47:27.97 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/top_level.txt", "Temporal_Wiki_Project.egg-info"}
+02:47:27.97 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/dependency_links.txt", "Temporal_Wiki_Project.egg-info"}
+02:47:27.97 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "Temporal_Wiki_Project.egg-info"}
+02:47:27.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/PKG-INFO", "Temporal_Wiki_Project.egg-info"}
+02:47:27.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/SOURCES.txt", "Temporal_Wiki_Project.egg-info"}
+02:47:27.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/top_level.txt", "Temporal_Wiki_Project.egg-info"}
+02:47:27.99 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"Temporal_Wiki_Project.egg-info/dependency_links.txt", "Temporal_Wiki_Project.egg-info"}
+02:47:27.99 [INFO] notify invalidation: cleared 1 and dirtied 61 nodes for: {"Temporal_Wiki_Project.egg-info", ""}
+02:47:44.12 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:47:44.12 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:47:44.12 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:47:44.12 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:47:47.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py", "grimm/tests"}
+02:47:47.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:47:47.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests", "grimm/tests/link_parsing.py"}
+02:47:47.05 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"grimm/tests/link_parsing.py"}
+02:47:55.22 [INFO] Extending leases
+02:47:55.22 [INFO] Done extending leases

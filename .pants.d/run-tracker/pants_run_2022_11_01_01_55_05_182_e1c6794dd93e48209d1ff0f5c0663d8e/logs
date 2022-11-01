@@ -1,0 +1,8 @@
+01:55:05.19 [33m[WARN][0m No arguments specified with `./pants tailor`, so the goal will do nothing.
+
+Instead, you should provide arguments like this:
+
+  * `./pants tailor ::` to run on everything
+  * `./pants tailor dir::` to run on `dir` and subdirs
+  * `./pants tailor dir` to run on `dir`
+  * `./pants --changed-since=HEAD tailor` to only run on changed and new files
