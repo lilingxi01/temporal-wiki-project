@@ -7,8 +7,6 @@ from .support.magicwords import MagicWords
 from .support.tags import ignored_tags_regex, self_closing_tags_regex, placeholder_tags_regex
 
 
-# match tail after wikilink
-tailRE = re.compile('\w+')  # TODO: I still cannot understand what it really did here.
 syntaxhighlight = re.compile('&lt;syntaxhighlight .*?&gt;(.*?)&lt;/syntaxhighlight&gt;', re.DOTALL)
 
 ##
@@ -37,13 +35,11 @@ dropped_html_elements = [
 accepted_namespaces = ['w', 'wiktionary', 'wikt']
 
 
-def clean_syntax(text, expand_templates=False, should_keep_link=True, html_safe=True):
+def clean_syntax(text, html_safe=True):
     """
     Transforms wiki markup. If the command line flag --escapedoc is set then the text is also escaped
     @see https://www.mediawiki.org/wiki/Help:Formatting
-    :param extractor: the Extractor t use.
     :param text: the text to clean.
-    :param expand_templates: whether to perform template expansion.
     :param html_safe: whether to convert reserved HTML characters to entities.
     @return: the cleaned text.
     """
@@ -55,10 +51,13 @@ def clean_syntax(text, expand_templates=False, should_keep_link=True, html_safe=
     text = drop_nested(text, r'{\|', r'\|}')
 
     # replace external links
-    text = replace_external_links(text, should_keep_link=should_keep_link)
+    text, external_links, images = parse_external_links(text)
 
     # replace internal links
-    text = replace_internal_links(text, should_keep_link=should_keep_link)
+    text, internal_links, drifts = parse_internal_links(text)
+
+    external_links = drift_adjust(external_links, drifts)
+    images = drift_adjust(images, drifts)
 
     # drop MagicWords behavioral switches
     text = MagicWords.regex.sub('', text)
@@ -133,7 +132,8 @@ def clean_syntax(text, expand_templates=False, should_keep_link=True, html_safe=
     text = text.replace(',,', ',').replace(',.', '.')
     if html_safe:
         text = html.escape(text, quote=False)
-    return text
+
+    return text, external_links, internal_links, images
 
 
 # ----------------------------------------------------------------------
@@ -181,6 +181,10 @@ spaces = re.compile(r' {2,}')
 
 # Matches dots
 dots = re.compile(r'\.{4,}')
+
+# Match the tail of an internal link.
+# Check here: https://www.mediawiki.org/wiki/Help:Links#Internal_links
+internal_link_tail_re = re.compile('\w+')
 
 
 # ----------------------------------------------------------------------
@@ -279,52 +283,39 @@ external_image_regex = re.compile(
     re.X | re.S | re.U)
 
 
-def replace_external_links(text, should_keep_link=True):
-    s = ''
+def parse_external_links(text):
+    result = ''
+    links = []
+    images = []
+
     cur = 0
     for m in external_link_regex.finditer(text):
-        s += text[cur:m.start()]
+        # Append the text between last find and this find.
+        result += text[cur:m.start()]
+
+        # Update cursor.
         cur = m.end()
 
         url = m.group(1)
         label = m.group(3)
 
-        # # The characters '<' and '>' (which were escaped by
-        # # removeHTMLtags()) should not be included in
-        # # URLs, per RFC 2396.
-        # m2 = re.search('&(lt|gt);', url)
-        # if m2:
-        #     link = url[m2.end():] + ' ' + link
-        #     url = url[0:m2.end()]
+        # Current position of result string.
+        curr_pos = len(result)
 
-        # If the link text is an image URL, replace it with an <img> tag
-        # This happened by accident in the original parser, but some people used it extensively
+        # Only add label to the final text.
+        result += label
+
+        # TODO: We might need to parse the image more carefully.
+        # Based on the definition here - https://www.mediawiki.org/wiki/Help:Images
+        # Images have url, type, and caption(alt).
+        # Current regex seems not parse them correctly.
         m = external_image_regex.match(label)
         if m:
-            label = make_external_image(label, should_keep_src=should_keep_link)
+            images.append((curr_pos, curr_pos + len(label), url))
+        else:
+            links.append((curr_pos, curr_pos + len(label), url))
 
-        # Use the encoded URL
-        # This means that users can paste URLs directly into the text
-        # Funny characters like ö aren't valid in URLs anyway
-        # This was changed in August 2004
-        s += make_external_link(url, label, should_keep_href=should_keep_link)  # + trail
-
-    return s + text[cur:]
-
-
-def make_external_link(url, anchor, should_keep_href=True):
-    """Function applied to wikiLinks"""
-    if should_keep_href:
-        return f'<a href="{urlencode(url)}">{anchor}</a>'
-    else:
-        return anchor
-
-
-def make_external_image(url, alt='', should_keep_src=True):
-    if should_keep_src:
-        return f'<img src="{url}" alt="{alt}">'
-    else:
-        return alt
+    return result + text[cur:], links, images
 
 
 # ----------------------------------------------------------------------
@@ -335,7 +326,7 @@ def make_external_image(url, alt='', should_keep_src=True):
 # Also: [[Help:IPA for Catalan|[andora]]]
 
 
-def replace_internal_links(text, should_keep_link=True):
+def parse_internal_links(text):
     """
     Replaces external links of the form:
     [[title |...|label]]trail
@@ -344,18 +335,26 @@ def replace_internal_links(text, should_keep_link=True):
     """
     # call this after removal of external links, so we need not worry about
     # triple closing ]]].
+
+    result = ''
+    links = []
+    drifts = []
+
     cur = 0
-    res = ''
+
     # `s` is the starting point, and `e` is the ending point.
     for s, e in find_balanced_pairs(text, ['[['], [']]']):
-        m = tailRE.match(text, e)
+        m = internal_link_tail_re.match(text, e)
         if m:
             trail = m.group(0)
             end = m.end()
         else:
             trail = ''
             end = e
+
+        # Inner content (got rid of `[[` and `]]`)
         inner = text[s + 2:e - 2]
+
         # find first |
         pipe = inner.find('|')
         if pipe < 0:
@@ -371,30 +370,69 @@ def replace_internal_links(text, should_keep_link=True):
                     pipe = last  # advance
                 curp = e1
             label = inner[pipe + 1:].strip()
-        res += text[cur:s] + make_internal_link(title, label, should_keep_href=should_keep_link) + trail
+        result += text[cur:s]
+
+        # Get current position of result string.
+        curr_pos = len(result)
+
+        # Compute label based on its title and its trail.
+        label = make_internal_link(title, label)
+
+        # Add links.
+        links.append((curr_pos, curr_pos + len(label), urlencode(title)))
+
+        # Compute the drift effect.
+        drift = len(label) - len(text[s:e])
+        drifts.append((e, drift))
+
+        # Finally append the label.
+        result += label + trail
+
+        # Forward the cursor.
         cur = end
-    return res + text[cur:]
+
+    return result + text[cur:], links, drifts
 
 
-def make_internal_link(title, label, should_keep_href=True):
-    colon = title.find(':')
-    if colon > 0 and title[:colon] not in accepted_namespaces:
+def make_internal_link(title, label) -> str:
+    colon_0 = title.find(':')
+    if colon_0 > 0 and title[:colon_0] not in accepted_namespaces:
         return ''
-    if colon == 0:
-        # drop also :File:
-        colon2 = title.find(':', colon + 1)
-        if colon2 > 1 and title[colon + 1:colon2] not in accepted_namespaces:
+    if colon_0 == 0:
+        # Also drop cases like ":File:"
+        colon_1 = title.find(':', colon_0 + 1)
+        if colon_1 > 1 and title[colon_0 + 1:colon_1] not in accepted_namespaces:
             return ''
-    if should_keep_href:
-        return f'<a href="{urlencode(title)}">{label}</a>'
-    else:
-        return label
+    return label
+
+
+def drift_adjust(links: list, drifts: list):
+    prev_drift_sum = 0
+    adjusted_links = []
+
+    # This algorithm is really fast.
+    # Only O(m+n) running time where m is len(links) and n is len(drifts).
+
+    for drift_index, drift_amount in drifts:
+        while links and links[0][0] < drift_index:
+            start_pos, end_pos, content = links.pop(0)
+            adjusted_links.append((start_pos + prev_drift_sum, end_pos + prev_drift_sum, content))
+
+        prev_drift_sum += drift_amount
+
+    # Process remaining links.
+    for link in links:
+        start_pos, end_pos, content = link
+        adjusted_links.append((start_pos + prev_drift_sum, end_pos + prev_drift_sum, content))
+
+    return adjusted_links
 
 
 # ----------------------------------------------------------------------
 # parser functions utilities
 
 
+# TODO: Organize this function.
 def find_balanced_pairs(text, open_delim, close_delim):
     """
     You can use this function to find out all these pairs.

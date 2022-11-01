@@ -1,11 +1,12 @@
 import json
 from datetime import datetime
-from syntax_cleanner import clean_syntax
+from grimm import clean_syntax
 
 
 def text_parser(raw_text):
     """Parse the wiki raw text into designated form."""
-    return clean_syntax(raw_text)
+    text, external_links, internal_links, images = clean_syntax(raw_text)
+    return text
 
 
 def get_timestamp(iso):
