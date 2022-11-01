@@ -1,0 +1,21 @@
+01:41:00.16 [ERROR] Invalid scope [python] in /Users/lingxili/Stuff/Projects/UMass-Amherst/temporal-wiki-project/pants.toml
+01:41:00.16 [ERROR] Invalid config entries detected. See log for details on which entries to update or remove.
+(Specify --no-verify-config to disable this check.)
+
+(Use --print-stacktrace to see more error details.)
+01:41:00.16 [INFO] request completed: `--pants-bin-name=./pants --pants-version=2.4.1 --version`
+01:41:23.47 [INFO] notify invalidation: cleared 2 and dirtied 2 nodes for: {"pants.toml", ""}
+01:41:23.47 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "pants.toml"}
+01:41:23.48 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"", "pants.toml"}
+01:41:23.48 [INFO] notify invalidation: cleared 0 and dirtied 0 nodes for: {"pants.toml", ""}
+01:41:23.49 [ERROR] saw filesystem changes covered by invalidation globs: content changed (<pants.engine.internals.native_engine.PyDigest object at 0x7fc2f8ea0930> fs <pants.engine.internals.native_engine.PyDigest object at 0x7fc2f8ea0930>). terminating the daemon.
+01:41:23.94 [ERROR] service failure for <pants.pantsd.service.scheduler_service.SchedulerService object at 0x7fc2f8e95e50>.
+01:41:23.94 [INFO] Waiting for ongoing runs to complete before exiting...
+01:41:23.95 [INFO] Server exiting with Ok(())
+01:41:23.96 [INFO] Waiting for Sessions to complete before exiting...
+01:41:23.96 [INFO] Waiting for shutdown of: ["scheduler_service_session", "store_gc_service_session"]
+01:41:23.96 [INFO] Shutdown completed: "scheduler_service_session"
+01:41:23.96 [INFO] Shutdown completed: "store_gc_service_session"
+01:41:23.96 [INFO] Exiting pantsd
+01:41:23.96 [WARN] File watcher exiting with: The watcher was shut down.
+01:41:24.00 [WARN] File watcher exiting with: The watcher was shut down.

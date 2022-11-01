@@ -1,0 +1,16 @@
+01:44:37.36 [INFO] handling request: `--pants-bin-name=./pants --pants-version=2.14.0 --version`
+01:44:37.53 [INFO] request completed: `--pants-bin-name=./pants --pants-version=2.14.0 --version`
+01:45:57.55 [INFO] Extending leases
+01:45:57.55 [INFO] Done extending leases
+01:47:17.59 [INFO] Extending leases
+01:47:17.59 [INFO] Done extending leases
+01:48:37.63 [INFO] Extending leases
+01:48:37.63 [INFO] Done extending leases
+01:49:57.68 [INFO] Extending leases
+01:49:57.68 [INFO] Done extending leases
+01:51:17.73 [INFO] Extending leases
+01:51:17.73 [INFO] Done extending leases
+01:52:37.77 [INFO] Extending leases
+01:52:37.78 [INFO] Done extending leases
+01:53:57.80 [INFO] Extending leases
+01:53:57.81 [INFO] Done extending leases
