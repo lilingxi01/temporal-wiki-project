@@ -1,8 +1,0 @@
-[GLOBAL]
-pants_version = "2.14.0"
-backend_packages = [
-    "pants.backend.python"
-]
-
-[source]
-root_patterns = ["/"]

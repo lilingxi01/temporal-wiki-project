@@ -1,6 +1,6 @@
 import xmltodict
-from models import HistoryBase
-from diff_module import HistoryDiff
+from project.lib.models import HistoryBase
+from project.diff_module import HistoryDiff
 
 # Load minimal sample file and content.
 xml_file = open('./sample_data/minimal_sample.xml', 'r')

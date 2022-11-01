@@ -9,3 +9,8 @@ __pycache__/
 
 .env
 .env.*
+
+# Pants workspace files
+/.pants.*
+/dist/
+/.pids

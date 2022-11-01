@@ -1,3 +1,3 @@
 python_sources(
-    name="root",
+    name="grimm"
 )
