@@ -1,4 +1,4 @@
-from project.grimm.cleaner_core import parse_external_links, parse_internal_links, drift_adjust
+from grimm.cleaner_core import parse_external_links, parse_internal_links, drift_adjust
 
 text = '[[Wow]], [https://google.com/hello Hello] [[world]]ing yeah [https://lingxi.li Lingxi Li]!'
 
