@@ -193,16 +193,61 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
     # In order to track where the content was added in the original sentence, we need to track the drift.
     # This drift is only for offsetting the index of "new sentence", never the old one.
     # Should be plus onto the current index (on new sentence).
+
+    upper_drifts = [0] * len(old_sentence)
+    lower_drifts = [0] * len(new_sentence)
+
+    old_length_tracker = [0] * len(old_sentence)
+    new_length_tracker = [0] * len(new_sentence)
+
+    for start, end in sorted(list(set(delete_changes + old_edit_changes)), key=lambda x: x[0]):
+        old_length_tracker[start] = end - start
+
+    for start, end in sorted(list(set(add_changes + new_edit_changes)), key=lambda x: x[0]):
+        new_length_tracker[start] = end - start
+
     cumulative_drift = 0
+    curr_index = 0
+    while curr_index < len(old_length_tracker) and curr_index - cumulative_drift < len(new_length_tracker):
+        curr_tracker_value = old_length_tracker[curr_index]
+        target_tracker_value = new_length_tracker[curr_index - cumulative_drift]
+        if curr_tracker_value == 0 and target_tracker_value == 0:
+            upper_drifts[curr_index] = cumulative_drift
+            curr_index += 1
+            continue
+        difference = curr_tracker_value - target_tracker_value
+        target_index = curr_index + curr_tracker_value
+        while curr_index < target_index:
+            upper_drifts[curr_index] = cumulative_drift
+            curr_index += 1
+        cumulative_drift += difference
+
+    cumulative_drift = 0
+    curr_index = 0
+    while curr_index < len(new_length_tracker) and curr_index + cumulative_drift < len(old_length_tracker):
+        curr_tracker_value = new_length_tracker[curr_index]
+        target_tracker_value = old_length_tracker[curr_index + cumulative_drift]
+        if curr_tracker_value == 0 and target_tracker_value == 0:
+            lower_drifts[curr_index] = cumulative_drift
+            curr_index += 1
+            continue
+        difference = target_tracker_value - curr_tracker_value
+        target_index = curr_index + curr_tracker_value
+        while curr_index < target_index:
+            lower_drifts[curr_index] = cumulative_drift
+            curr_index += 1
+        cumulative_drift += difference
+
+    print('upper:', upper_drifts)
+    print('lower:', lower_drifts)
 
     for start, end in delete_changes:
-        corresponding_index = start - cumulative_drift
+        corresponding_index = start - upper_drifts[start]
         new_start, new_end = get_waypoint(corresponding_index, corresponding_index, new_forward_waypoints,
                                           new_backward_waypoints)
         old_text = old_sentence[start:end]
         new_text = new_sentence[new_start:new_end]
         change_list.add((start, old_text, new_text))
-        cumulative_drift += len(old_text) - len(new_text)
 
     for i in range(len(old_edit_changes)):
         old_start, old_end = old_edit_changes[i]
@@ -210,16 +255,17 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
         new_start, new_end = new_edit_changes[i]
         new_change_text = new_sentence[new_start:new_end]
         change_list.add((old_start, old_change_text, new_change_text))
-        cumulative_drift -= len(new_change_text) - len(old_change_text)
 
     for start, end in add_changes:
-        corresponding_index = start + cumulative_drift
-        old_start, old_end = get_waypoint(corresponding_index, corresponding_index, old_forward_waypoints,
-                                          old_backward_waypoints)
+        corresponding_index = start + lower_drifts[start]
+        if upper_drifts[corresponding_index] == start:
+            old_start, old_end = get_waypoint(corresponding_index, corresponding_index, old_forward_waypoints,
+                                              old_backward_waypoints)
+        else:
+            old_start, old_end = 0, 0
         old_text = old_sentence[old_start:old_end]
         new_text = new_sentence[start:end]
         change_list.add((corresponding_index, old_text, new_text))
-        cumulative_drift -= len(new_text) - len(old_text)
 
     return sorted(list(change_list), key=lambda x: x[0])
 

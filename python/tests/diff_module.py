@@ -11,7 +11,7 @@ NICE
 '''
 
 example_b = '''Like Kafka's other novels, The Trial was left unfinished at his death, and was never intended to be published.
-The Trial is a novel by the author Franz Kafka that tells the story of a character named Josef K, who, for reasons that one never discovers, awakes one morning and is arrested and subjected to the rigours of the judicial process for an unspecified crime.
+The Trial is a novel by the author Franz Kafka that tells the story of a character named Josef K, who, that one never discovers, awakes one morning and is arrested and subjected to the rigours of the judicial process for an unspecified crime.
 Hll
 Goood
      
@@ -23,8 +23,14 @@ differ = Differ()
 diff_result = differ.compare(preprocess_str_to_pool(example_a), preprocess_str_to_pool(example_b))
 
 old_sentences, changes = diff_postprocess(diff_result)
-print(old_sentences)
+
 print()
-print(changes)
+
+for i in range(len(old_sentences)):
+    old_sentence = old_sentences[i]
+    change = changes[i]
+    print('"' + old_sentence + '"')
+    print(change)
+    print()
 
 
