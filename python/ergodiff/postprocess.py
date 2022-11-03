@@ -27,10 +27,9 @@ def diff_postprocess(diff: Iterator[str]):
         if not len(row):
             continue
 
-        print(row)
-
         change_type = row[0]
-        content = row[2:]
+        content = row[2:].rstrip('\n')
+        print(change_type, content)
 
         # If it is not '?' and we have pending row, then we archive it.
         if change_type != '?' and pending_row and pending_change_type:
@@ -174,15 +173,13 @@ def track_changes(change_pattern: str, target: str, forward_waypoints: List[int]
 
 # TODO: Documentation.
 def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: str, new_change_pattern: str) -> List[tuple]:
-    change_list = []
+    change_list = set()
 
     # Track the expansion waypoints.
     old_forward_waypoints = build_waypoints(old_sentence, forward=True)
     old_backward_waypoints = build_waypoints(old_sentence, forward=False)
     new_forward_waypoints = build_waypoints(new_sentence, forward=True)
     new_backward_waypoints = build_waypoints(new_sentence, forward=False)
-
-    # TODO: Track the edit changes (not add or delete).
 
     add_changes = track_changes(new_change_pattern, '+', new_forward_waypoints, new_backward_waypoints)
     delete_changes = track_changes(old_change_pattern, '-', old_forward_waypoints, old_backward_waypoints)
@@ -199,22 +196,30 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
     cumulative_drift = 0
 
     for start, end in delete_changes:
-        deleted_text = old_sentence[start:end]
-        change_list.append((start, deleted_text, ''))
-        cumulative_drift += len(deleted_text)
+        corresponding_index = start - cumulative_drift
+        new_start, new_end = get_waypoint(corresponding_index, corresponding_index, new_forward_waypoints,
+                                          new_backward_waypoints)
+        old_text = old_sentence[start:end]
+        new_text = new_sentence[new_start:new_end]
+        change_list.add((start, old_text, new_text))
+        cumulative_drift += len(old_text) - len(new_text)
 
     for i in range(len(old_edit_changes)):
         old_start, old_end = old_edit_changes[i]
         old_change_text = old_sentence[old_start:old_end]
         new_start, new_end = new_edit_changes[i]
         new_change_text = new_sentence[new_start:new_end]
-        change_list.append((old_start, old_change_text, new_change_text))
+        change_list.add((old_start, old_change_text, new_change_text))
         cumulative_drift -= len(new_change_text) - len(old_change_text)
 
     for start, end in add_changes:
-        added_text = new_sentence[start:end]
-        change_list.append((start + cumulative_drift, '', added_text))
-        cumulative_drift -= len(added_text)
+        corresponding_index = start + cumulative_drift
+        old_start, old_end = get_waypoint(corresponding_index, corresponding_index, old_forward_waypoints,
+                                          old_backward_waypoints)
+        old_text = old_sentence[old_start:old_end]
+        new_text = new_sentence[start:end]
+        change_list.add((corresponding_index, old_text, new_text))
+        cumulative_drift -= len(new_text) - len(old_text)
 
-    return change_list
+    return sorted(list(change_list), key=lambda x: x[0])
 
