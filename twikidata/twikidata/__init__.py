@@ -1,5 +1,5 @@
 import xmltodict
-from lib.models import HistoryBase
+from models import HistoryBase
 from ergodiff import HistoryDiff
 
 # Load minimal sample file and content.

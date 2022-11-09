@@ -1,4 +1,4 @@
-from typing import Iterator, List
+from typing import Iterator, List, Tuple
 
 
 def diff_postprocess(diff: Iterator[str]):
@@ -86,7 +86,23 @@ def diff_postprocess(diff: Iterator[str]):
             pending_change_type = None
             potential_edit_add = False
 
-    return old_sentences, changes
+    # Finalize the parsing if there are any pending change left.
+    if pending_row and pending_change_type == '+':
+        old_sentences.append('')
+        changes.append([(0, '', pending_row)])
+    elif pending_row and pending_change_type == '-':
+        old_sentences.append(pending_row)
+        changes.append([(0, pending_row, '')])
+
+    # Compute the index of added lines.
+    # Because we are not accepting any existing line to be empty,
+    # so all empty lines should be added lines in current iteration.
+    added_lines = []
+    for index, line in enumerate(old_sentences):
+        if line == '':
+            added_lines.append(index)
+
+    return old_sentences, changes, added_lines
 
 
 # TODO: Design of 'progressive replacement' function - trim the empty line in the output for line deletion.
@@ -172,6 +188,21 @@ def track_changes(change_pattern: str, target: str, forward_waypoints: List[int]
 
 
 # TODO: Documentation.
+def trim_whitespace(sentence: str, changes: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    result = []
+    for start, end in changes:
+        snippet = sentence[start:end]
+        left_space_length = len(snippet) - len(snippet.lstrip())
+        right_space_length = len(snippet) - len(snippet.rstrip())
+        start += left_space_length
+        end -= right_space_length
+        if start > end:
+            end = start
+        result.append((start, end))
+    return result
+
+
+# TODO: Documentation.
 def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: str, new_change_pattern: str) -> List[tuple]:
     change_list = set()
 
@@ -186,6 +217,13 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
     old_edit_changes = track_changes(old_change_pattern, '^', old_forward_waypoints, old_backward_waypoints)
     new_edit_changes = track_changes(new_change_pattern, '^', new_forward_waypoints, new_backward_waypoints)
 
+    add_changes = trim_whitespace(new_sentence, add_changes)
+    delete_changes = trim_whitespace(old_sentence, delete_changes)
+    old_edit_changes = trim_whitespace(old_sentence, old_edit_changes)
+    new_edit_changes = trim_whitespace(new_sentence, new_edit_changes)
+
+    # TODO: Remove duplicate changes.
+
     # The handling order should be 'delete', 'edit', and 'add'.
     # And we want to treat all of them to be 'edit', so it becomes better in the word-basis.
 
@@ -194,8 +232,7 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
     # This drift is only for offsetting the index of "new sentence", never the old one.
     # Should be plus onto the current index (on new sentence).
 
-    upper_drifts = [0] * len(old_sentence)
-    lower_drifts = [0] * len(new_sentence)
+    # Track the length.
 
     old_length_tracker = [0] * len(old_sentence)
     new_length_tracker = [0] * len(new_sentence)
@@ -205,6 +242,11 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
 
     for start, end in sorted(list(set(add_changes + new_edit_changes)), key=lambda x: x[0]):
         new_length_tracker[start] = end - start
+
+    # Track the drift based on length.
+
+    upper_drifts = [0] * len(old_sentence)
+    lower_drifts = [0] * len(new_sentence)
 
     cumulative_drift = 0
     curr_index = 0
@@ -238,6 +280,7 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
             curr_index += 1
         cumulative_drift += difference
 
+    # For testing purpose. Should remove the entire comment in the future.
     print('upper:', upper_drifts)
     print('lower:', lower_drifts)
 
@@ -257,15 +300,12 @@ def change_expander(old_sentence: str, new_sentence: str, old_change_pattern: st
         change_list.add((old_start, old_change_text, new_change_text))
 
     for start, end in add_changes:
+        print(start, end)
         corresponding_index = start + lower_drifts[start]
-        if upper_drifts[corresponding_index] == start:
-            old_start, old_end = get_waypoint(corresponding_index, corresponding_index, old_forward_waypoints,
-                                              old_backward_waypoints)
-        else:
-            old_start, old_end = 0, 0
+        old_start, old_end = get_waypoint(corresponding_index, corresponding_index, old_forward_waypoints,
+                                          old_backward_waypoints)
         old_text = old_sentence[old_start:old_end]
         new_text = new_sentence[start:end]
-        change_list.add((corresponding_index, old_text, new_text))
+        change_list.add((old_start, old_text, new_text))
 
     return sorted(list(change_list), key=lambda x: x[0])
-
