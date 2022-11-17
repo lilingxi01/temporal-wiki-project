@@ -38,5 +38,5 @@ def test_mutate_line():
 
     assert old_sentences == ['Okay, this is added.']
     print(changes)
-    assert changes[0] == [(6, 'this', 'that'), (13, '', ' nicely')]
+    assert changes[0] == [(6, 'this', 'that'), (14, '', 'nicely')]
     assert added_lines == []
