@@ -23,22 +23,39 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Load cached Poetry installation
-        uses: actions/cache@v3
-        with:
-          path: ~/.local  # the path depends on the OS
-          key: poetry-0  # increment to reset cache
       - name: Install Poetry
         uses: snok/install-poetry@v1
-      - name: Test Grimm
+      - name: Cache Poetry virtualenv
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: ~/.virtualenvs
+          key: poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            poetry-${{ hashFiles('**/poetry.lock') }}
+      - name: Set Poetry config
+        run: |
+          poetry config settings.virtualenvs.in-project false
+          poetry config settings.virtualenvs.path ~/.virtualenvs
+      - name: Install dependencies
         run: |
           cd grimm
           poetry install
+          cd ..
+          cd ergodiff
+          poetry install
+          cd ..
+          cd twikidata
+          poetry install
+          cd ..
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Test Grimm
+        run: |
+          cd grimm
           poetry run pytest
           cd ..
       - name: Test Ergodiff
         run: |
           cd ergodiff
-          poetry install
           poetry run pytest
           cd ..
