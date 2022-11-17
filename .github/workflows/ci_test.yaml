@@ -1,0 +1,44 @@
+name: CI Test
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'candidate/*'
+
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Load cached Poetry installation
+        uses: actions/cache@v3
+        with:
+          path: ~/.local  # the path depends on the OS
+          key: poetry-0  # increment to reset cache
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+      - name: Test Grimm
+        run: |
+          cd grimm
+          poetry install
+          poetry run pytest
+          cd ..
+      - name: Test Ergodiff
+        run: |
+          cd ergodiff
+          poetry install
+          poetry run pytest
+          cd ..
