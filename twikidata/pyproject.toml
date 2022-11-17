@@ -9,13 +9,14 @@ readme = "README.md"
 python = "^3.9"
 xmltodict = "^0.13.0"
 ergodiff = {path = "../ergodiff"}
+grimm = {path = "../grimm"}
 
 
 [tool.poetry.scripts]
 main = "twikidata:main"
 
 [tool.poetry.group.dev.dependencies]
-grimm = {path = "../grimm"}
+pytest = "^7.2.0"
 
 [build-system]
 requires = ["poetry-core"]
