@@ -7,7 +7,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
+xmltodict = "^0.13.0"
+ergodiff = {path = "../ergodiff"}
 
+
+[tool.poetry.scripts]
+main = "twikidata:main"
+
+[tool.poetry.group.dev.dependencies]
+grimm = {path = "../grimm"}
 
 [build-system]
 requires = ["poetry-core"]

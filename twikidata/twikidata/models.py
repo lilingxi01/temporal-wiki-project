@@ -1,5 +1,7 @@
 import json
 from datetime import datetime
+
+from ergodiff import Ergodiff
 from grimm import clean_syntax
 
 
@@ -19,6 +21,8 @@ class HistoryEntry:
         self.timestamp = get_timestamp(revision['timestamp']) - root_timestamp
         if '#text' in revision['text']:
             self.raw_text = text_parser(revision['text']['#text'])
+        else:
+            self.raw_text = None
 
 
 class HistoryBase:
@@ -27,6 +31,7 @@ class HistoryBase:
         self.title = page['title']
         self.id = page['id']
         self.children = []
+        self.ergodiff = Ergodiff()
         if type(page['revision']) is list:
             self.root_timestamp = get_timestamp(page['revision'][0]['timestamp'])
             for revision in page['revision']:
@@ -34,6 +39,25 @@ class HistoryBase:
         else:
             self.root_timestamp = get_timestamp(page['revision']['timestamp'])
             self.children.append(HistoryEntry(page['revision'], self.root_timestamp))
+
+    def get_change_lists(self):
+        old_sentences = None
+        changes = []
+        added_lines = []
+        prev_text = self.children[0].raw_text
+        for revision in self.children[1:]:
+            if revision.raw_text is None:
+                print('[Skip] Empty revision:', revision)
+                continue
+            text = revision.raw_text
+            curr_sentences, curr_changes, curr_added_lines = self.ergodiff.get_diff(prev_text, text)
+
+            if old_sentences is None:
+                old_sentences = curr_sentences
+            changes.append(curr_changes)
+            added_lines.append(curr_added_lines)
+            prev_text = text
+        return old_sentences, changes, added_lines
 
     def __str__(self):
         return json.dumps({

@@ -1,0 +1,46 @@
+[[package]]
+name = "ergodiff"
+version = "0.2.0"
+description = ""
+category = "main"
+optional = false
+python-versions = "^3.9"
+develop = false
+
+[package.source]
+type = "directory"
+url = "../ergodiff"
+
+[[package]]
+name = "grimm"
+version = "0.1.0"
+description = ""
+category = "dev"
+optional = false
+python-versions = "^3.9"
+develop = false
+
+[package.source]
+type = "directory"
+url = "../grimm"
+
+[[package]]
+name = "xmltodict"
+version = "0.13.0"
+description = "Makes working with XML feel like you are working with JSON"
+category = "main"
+optional = false
+python-versions = ">=3.4"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.9"
+content-hash = "884ab7b506286a4fddeaf1684c68e61c8a3551dc2454769df2e5f721f69d4cef"
+
+[metadata.files]
+ergodiff = []
+grimm = []
+xmltodict = [
+    {file = "xmltodict-0.13.0-py2.py3-none-any.whl", hash = "sha256:aa89e8fd76320154a40d19a0df04a4695fb9dc5ba977cbb68ab3e4eb225e7852"},
+    {file = "xmltodict-0.13.0.tar.gz", hash = "sha256:341595a488e3e01a85a9d8911d8912fd922ede5fecc4dce437eb4b6c8d037e56"},
+]
