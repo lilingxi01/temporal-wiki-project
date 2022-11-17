@@ -1,5 +1,7 @@
 import json
 import os
+import time
+import timeit
 from difflib import Differ
 
 import xmltodict
@@ -24,6 +26,8 @@ def main():
     else:
         parsed.append(HistoryBase(tree['mediawiki']['page']))
 
+    start_time = time.time()
+
     test_article = parsed[0]
     old_sentences, changes, added_lines = test_article.get_change_lists()
 
@@ -39,14 +43,20 @@ def main():
     #      if candidate_line != reconstruct_line:
     #          print('\n'.join(list(differ.compare([candidate_line], [reconstruct_line]))))
 
-    print('Running on', len(parsed[0].children), 'revisions.')
-    print('Reconstruct result:', reconstruct_result == candidate_pool)
+    print('[Time] Diff + reconstruct running time: {}s'.format(round(time.time() - start_time, 3)))
+    print('[Result] Reconstruct result:', reconstruct_result == candidate_pool)
 
-    if not os.path.exists('../test_output'):
-        os.mkdir('../test_output')
-    with open('../test_output/sample_1.json', 'w') as f:
-        f.write(json.dumps({
-            'old_sentences': old_sentences,
-            'changes': changes,
-            'added_lines': added_lines,
-        }))
+    # if not os.path.exists('../test_output'):
+    #     os.mkdir('../test_output')
+    # with open('../test_output/sample_1.json', 'w') as f:
+    #     f.write(json.dumps({
+    #         'old_sentences': old_sentences,
+    #         'changes': changes,
+    #         'added_lines': added_lines,
+    #     }))
+
+
+def time_matrix():
+    iterations = 20
+    mean_running_time = timeit.timeit(main, number=iterations) / iterations
+    print('Total running time for each iteration: {}s'.format(round(mean_running_time, 3)))
