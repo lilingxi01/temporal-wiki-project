@@ -1,7 +1,9 @@
 from difflib import Differ
+
 from .preprocess import preprocess_str_to_pool
 from .outer_diff import process_outer_diff
 from .inner_diff import process_inner_diff
+from .reconstruct import auto_reconstruct, progressive_reconstruct
 
 
 class Ergodiff:

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ergodiff"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Lingxi Li <lilingxi01@gmail.com>"]
 readme = "README.md"

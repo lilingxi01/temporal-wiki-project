@@ -1,10 +1,10 @@
 from difflib import Differ
-from typing import Iterator
+from typing import Iterator, Tuple, List
 
 from ergodiff.inner_diff import process_inner_diff
 
 
-def process_outer_diff(diff: Iterator[str], differ: Differ):
+def process_outer_diff(diff: Iterator[str], differ: Differ) -> Tuple[List[str], List[List[str]], List[int]]:
     old_sentences = []
 
     # For the format of items of changes, check Notion documentation.
@@ -32,7 +32,6 @@ def process_outer_diff(diff: Iterator[str], differ: Differ):
 
         change_type = row[0]
         content = row[2:].rstrip('\n')
-        print(change_type, content)
 
         # If it is not '?' and we have pending row, then we archive it.
         if change_type != '?' and pending_row and pending_change_type:
