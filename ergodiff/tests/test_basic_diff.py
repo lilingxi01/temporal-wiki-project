@@ -10,7 +10,7 @@ def test_add_line():
 
     old_sentences, changes, added_lines = ergodiff.get_diff(example_a, example_b)
 
-    assert old_sentences == ['Hello, world!', 'This is a test.']
+    assert old_sentences == ['Hello, world!', '', 'This is a test.']
     assert changes[0] == []
     assert changes[1] == [(0, '', 'Okay, this is added.')]
     assert changes[2] == []
