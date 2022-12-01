@@ -17,37 +17,36 @@ def get_timestamp(iso):
 
 class HistoryEntry:
     """This class is for storing the atom change history of a page."""
-    def __init__(self, revision, root_timestamp):
-        self.timestamp = get_timestamp(revision['timestamp']) - root_timestamp
-        if '#text' in revision['text']:
-            self.raw_text = text_parser(revision['text']['#text'])
-        else:
-            self.raw_text = None
+    def __init__(self, revision_text, timestamp, root_timestamp):
+        self.timestamp = get_timestamp(timestamp) - root_timestamp
+        self.raw_text = text_parser(revision_text)
 
 
 class HistoryBase:
     """This class is for holding the instance of a wiki page."""
-    def __init__(self, page):
-        self.title = page['title']
-        self.id = page['id']
-        self.children = []
+    def __init__(self, title):
+        self.title = title
+        self.revisions = []
+        self.root_timestamp = None
         self.ergodiff = Ergodiff()
-        if type(page['revision']) is list:
-            self.root_timestamp = get_timestamp(page['revision'][0]['timestamp'])
-            for revision in page['revision']:
-                self.children.append(HistoryEntry(revision, self.root_timestamp))
-        else:
-            self.root_timestamp = get_timestamp(page['revision']['timestamp'])
-            self.children.append(HistoryEntry(page['revision'], self.root_timestamp))
+        self.id = None
+
+    def set_id(self, id: str):
+        self.id = id
+
+    def add_revision(self, revision_text, timestamp):
+        if len(self.revisions) == 0:
+            self.root_timestamp = get_timestamp(timestamp)
+        self.revisions.append(HistoryEntry(revision_text, timestamp, self.root_timestamp))
 
     def get_change_lists(self):
         old_sentences = None
         changes = []
         added_lines = []
-        prev_text = self.children[0].raw_text
-        for revision in self.children[1:]:
+        prev_text = self.revisions[0].raw_text
+        for revision in self.revisions[1:]:
             if revision.raw_text is None:
-                print('[Skip] Empty revision:', revision)
+                # print('[Skip] Empty revision:', revision)
                 continue
             text = revision.raw_text
             curr_sentences, curr_changes, curr_added_lines = self.ergodiff.get_diff(prev_text, text)
@@ -62,12 +61,11 @@ class HistoryBase:
     def __str__(self):
         return json.dumps({
             'title': self.title,
-            'id': self.id,
-            'children count': len(self.children),
+            'children count': len(self.revisions),
         }, indent=4)
 
     def __repr__(self):
         return self.__str__()
 
     def __getitem__(self, item):
-        return self.children[item]
+        return self.revisions[item]

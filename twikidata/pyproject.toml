@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "twikidata"
-version = "0.1.0"
+version = "0.2.14"
 description = ""
 authors = ["Lingxi Li <lilingxi01@gmail.com>"]
 readme = "README.md"
@@ -8,16 +8,17 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 xmltodict = "^0.13.0"
-ergodiff = {path = "../ergodiff"}
-grimm = {path = "../grimm"}
+ergodiff = "^0.2.0"
+grimm = "^0.1.0"
 
 
 [tool.poetry.scripts]
-main = "twikidata:main"
-time = "twikidata:time_matrix"
+twikidata = "twikidata.__main__:main"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"
+ergodiff = {path = "../ergodiff"}
+grimm = {path = "../grimm"}
 
 [build-system]
 requires = ["poetry-core"]
