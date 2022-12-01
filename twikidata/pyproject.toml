@@ -8,8 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 xmltodict = "^0.13.0"
-ergodiff = {path = "../ergodiff"}
 grimm = {path = "../grimm"}
+ergodiff = {path = "../ergodiff"}
 
 
 [tool.poetry.scripts]
