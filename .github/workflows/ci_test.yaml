@@ -6,9 +6,6 @@ on:
       - 'main'
       - 'candidate/*'
 
-  pull_request:
-    types: [opened, reopened]
-
 jobs:
   build:
 
