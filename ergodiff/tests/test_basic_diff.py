@@ -48,5 +48,5 @@ def test_mutate_line_delete():
     old_sentences, changes, added_lines = ergodiff.get_diff(example_a, example_b)
 
     assert old_sentences == ['Okay, this one is added perfectly.']
-    assert changes[0] == [(6, 'this', 'that'), (18, 'added', 'added.'), (24, 'perfectly.', '')]
+    assert changes[0] == [(6, 'this', 'that'), (18, 'added perfectly.', 'added.')]
     assert added_lines == []

@@ -1,10 +1,9 @@
-from difflib import Differ
 from typing import Iterator, Tuple, List
 
 from ergodiff.inner_diff import process_inner_diff
 
 
-def process_outer_diff(diff: Iterator[str], differ: Differ) -> Tuple[List[str], List[List[str]], List[int]]:
+def process_outer_diff(diff: Iterator[str]) -> Tuple[List[str], List[List[str]], List[int]]:
     old_sentences = []
 
     # For the format of items of changes, check Notion documentation.
@@ -39,7 +38,7 @@ def process_outer_diff(diff: Iterator[str], differ: Differ) -> Tuple[List[str], 
             if edit_context and pending_change_type == '+':
                 old_row, old_change = edit_context
                 new_row, new_change = pending_row, ''
-                edit_change = process_inner_diff(old_row, new_row, differ)
+                edit_change = process_inner_diff(old_row, new_row)
                 old_sentences.append(old_row)
                 changes.append(edit_change)
                 edit_context = None
@@ -73,7 +72,7 @@ def process_outer_diff(diff: Iterator[str], differ: Differ) -> Tuple[List[str], 
                 else:
                     old_row, old_change = '', ''  # TODO: Problematic! Need to find a way to handle it more precisely.
                 new_row, new_change = pending_row, content
-                edit_change = process_inner_diff(old_row, new_row, differ)
+                edit_change = process_inner_diff(old_row, new_row)
                 # Finalize the edit change and archive it.
                 old_sentences.append(old_row)
                 changes.append(edit_change)
