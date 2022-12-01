@@ -1,8 +1,4 @@
-import json
-import os
 import time
-import timeit
-from difflib import Differ
 
 import xmltodict
 from .models import HistoryBase
@@ -56,7 +52,34 @@ def main():
     #     }))
 
 
+def get_time_single_run():
+    xml_file = open('../sample_data/minimal_sample.xml', 'r')
+    xml_content = xml_file.read()
+
+    # Parse the XML content and generate the object tree.
+    tree = xmltodict.parse(xml_content)
+
+    # Parse the object tree.
+    parsed = []
+
+    if type(tree['mediawiki']['page']) is list:
+        for page in tree['mediawiki']['page']:
+            parsed.append(HistoryBase(page))
+    else:
+        parsed.append(HistoryBase(tree['mediawiki']['page']))
+
+    start_time = time.time()
+
+    test_article = parsed[0]
+    old_sentences, changes, added_lines = test_article.get_change_lists()
+
+    time_consumed = round(time.time() - start_time, 3)
+    print('[Time] Diff running time: {}s'.format(time_consumed))
+
+    return time_consumed
+
+
 def time_matrix():
     iterations = 20
-    mean_running_time = timeit.timeit(main, number=iterations) / iterations
+    mean_running_time = sum([get_time_single_run() for _ in range(iterations)]) / iterations
     print('Total running time for each iteration: {}s'.format(round(mean_running_time, 3)))
